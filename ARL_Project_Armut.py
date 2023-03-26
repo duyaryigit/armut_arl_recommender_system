@@ -100,7 +100,7 @@ df.head()
 # 0_2018-04        0     0      0     0      0     1     0     0     0     0..
 # 10000_2017-08    0     0      0     0      0     0     0     0     0     0..
 
-invoice_product_df = df.groupby(['SepetID', 'Services'])['Services'].count().unstack().fillna(0).applymap(lambda x: 1 if x > 0 else 0)
+invoice_product_df = df.groupby(['BasketID', 'Services'])['Services'].count().unstack().fillna(0).applymap(lambda x: 1 if x > 0 else 0)
 df_t= invoice_product_df
 df_t.head()
 invoice_product_df.loc[["10591_2018-08"]]
@@ -154,6 +154,6 @@ def arl_recommender1(rules_df, product_id, rec_count=1):
 
 arl_recommender1(rules,"2_0", 1)
 
-df.loc[df["Hizmet"] == "2_0"].sort_values("CreateDate", ascending=False)
+df.loc[df["Services"] == "2_0"].sort_values("CreateDate", ascending=False)
 
 invoice_product_df.loc[["21857_2017-08"]]
